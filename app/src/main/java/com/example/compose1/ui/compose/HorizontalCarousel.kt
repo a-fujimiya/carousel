@@ -36,6 +36,7 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.TextUnitType
 import androidx.compose.ui.unit.dp
 import com.example.compose1.state.AutoScrollPagerState
+import com.example.compose1.state.rememberInfiniteAutoScrollPagerState
 import com.example.compose1.state.rememberLoopAutoScrollPagerState
 import com.example.compose1.ui.theme.Compose1Theme
 
@@ -77,19 +78,18 @@ fun HorizontalCarousel(
                 content(index)
             }
         }
-        HorizontalPagerIndicator(state = state.pagerState)
+        HorizontalPagerIndicator(state = state)
     }
 }
 
 @OptIn(ExperimentalFoundationApi::class)
 @Preview
 @Composable
-private fun PreviewHorizontalCarousel() {
+private fun PreviewLoopHorizontalCarousel() {
     val context = LocalContext.current
     Compose1Theme {
         Surface {
             HorizontalCarousel(
-//                state = rememberInfiniteAutoScrollPagerState(pageCount = 3),
                 state = rememberLoopAutoScrollPagerState(pageCount = 3),
                 modifier = Modifier
                     .fillMaxWidth()
@@ -121,6 +121,47 @@ private fun PreviewHorizontalCarousel() {
                 }
             }
         }
+    }
+}
 
+@OptIn(ExperimentalFoundationApi::class)
+@Preview
+@Composable
+private fun PreviewInfiniteHorizontalCarousel() {
+    val context = LocalContext.current
+    Compose1Theme {
+        Surface {
+            HorizontalCarousel(
+                state = rememberInfiniteAutoScrollPagerState(pageCount = 3),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(420.dp),
+            ) {
+                Card(
+                    onClick = {
+                        Toast.makeText(context, "Page $it tapped", Toast.LENGTH_SHORT).show()
+                    },
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(16.dp),
+                    border = BorderStroke(1.dp, Color.DarkGray),
+                    shape = RoundedCornerShape(16.dp),
+                ) {
+                    Column(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .background(Color.White),
+                        verticalArrangement = Arrangement.Center
+                    ) {
+                        Text(
+                            text = "Page $it",
+                            textAlign = TextAlign.Center,
+                            fontSize = TextUnit(20F, TextUnitType.Sp),
+                            modifier = Modifier.fillMaxWidth(),
+                        )
+                    }
+                }
+            }
+        }
     }
 }

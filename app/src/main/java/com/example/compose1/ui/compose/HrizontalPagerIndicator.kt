@@ -5,12 +5,10 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.foundation.pager.PagerState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -18,13 +16,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.compose1.state.AutoScrollPagerState
 import com.example.compose1.state.rememberLoopAutoScrollPagerState
 
 
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun HorizontalPagerIndicator(
-    state: PagerState,
+    state: AutoScrollPagerState,
     modifier: Modifier = Modifier,
 ) {
     LazyRow(
@@ -52,5 +50,5 @@ fun HorizontalPagerIndicator(
 @Preview
 @Composable
 fun PreviewHorizontalPagerIndicator() {
-    HorizontalPagerIndicator(state = rememberLoopAutoScrollPagerState(pageCount = 4).pagerState)
+    HorizontalPagerIndicator(state = rememberLoopAutoScrollPagerState(pageCount = 4))
 }

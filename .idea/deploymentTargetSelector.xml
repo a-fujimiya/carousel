@@ -8,6 +8,12 @@
       <SelectionState runConfigName="PreviewHorizontalCarousel">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
+      <SelectionState runConfigName="PreviewLoopHorizontalCarousel">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
+      <SelectionState runConfigName="PreviewInfiniteHorizontalCarousel">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
     </selectionStates>
   </component>
 </project>
